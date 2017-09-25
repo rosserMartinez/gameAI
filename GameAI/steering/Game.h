@@ -15,6 +15,7 @@ class SpriteManager;
 class KinematicUnit;
 class GameMessageManager;
 class Timer;
+class UnitManager;
 
 const IDType BACKGROUND_SPRITE_ID = 0;
 const IDType PLAYER_ICON_SPRITE_ID = 1;
@@ -53,6 +54,8 @@ private:
 	GraphicsBufferManager* mpGraphicsBufferManager;
 	SpriteManager* mpSpriteManager;
 	GameMessageManager* mpMessageManager;
+	UnitManager* mpUnitManager;
+
 	Timer* mpLoopTimer;
 	Timer* mpMasterTimer;
 	bool mShouldExit;

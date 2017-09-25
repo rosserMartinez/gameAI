@@ -20,6 +20,7 @@
 #include "Timer.h"
 #include "KinematicUnit.h"
 #include "PlayerMoveToMessage.h"
+#include "UnitManager.h"
 
 Game* gpGame = NULL;
 
@@ -181,17 +182,23 @@ bool Game::init()
 	Vector2D pos( 0.0f, 0.0f );
 	Vector2D vel( 0.0f, 0.0f );
 	mpUnit = new KinematicUnit( pArrowSprite, pos, 1, vel, 0.0f, 200.0f, 10.0f );
-	
+
+	mpUnitManager = new UnitManager(mpUnit);
+
 	Vector2D pos2( 1000.0f, 500.0f );
 	Vector2D vel2( 0.0f, 0.0f );
 	mpAIUnit = new KinematicUnit( pEnemyArrow, pos2, 1, vel2, 0.0f, 180.0f, 100.0f );
 	//give steering behavior
 	mpAIUnit->dynamicArrive( mpUnit ); 
 
+	mpUnitManager->addUnit(mpAIUnit);
+
 	Vector2D pos3( 500.0f, 500.0f );
 	mpAIUnit2 = new KinematicUnit( pEnemyArrow, pos3, 1, vel2, 0.0f, 180.0f, 100.0f );
 	//give steering behavior
 	mpAIUnit2->dynamicSeek( mpUnit );  
+
+	mpUnitManager->addUnit(mpAIUnit2);
 
 	return true;
 }
@@ -223,6 +230,9 @@ void Game::cleanup()
 	delete mpMessageManager;
 	mpMessageManager = NULL;
 
+	delete mpUnitManager;
+	mpUnitManager = NULL;
+
 	al_destroy_sample(mpSample);
 	mpSample = NULL;
 	al_destroy_font(mpFont);
@@ -246,19 +256,20 @@ void Game::beginLoop()
 	
 void Game::processLoop()
 {
-	//update units
-	mpUnit->update( LOOP_TARGET_TIME/1000.0f );
-	mpAIUnit->update( LOOP_TARGET_TIME/1000.0f );
-	mpAIUnit2->update( LOOP_TARGET_TIME/1000.0f );
-	
 	//draw background
 	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
 	pBackgroundSprite->draw( *(mpGraphicsSystem->getBackBuffer()), 0, 0 );
 
-	//draw units
-	mpUnit->draw( GRAPHICS_SYSTEM->getBackBuffer() );
-	mpAIUnit->draw( GRAPHICS_SYSTEM->getBackBuffer() );
-	mpAIUnit2->draw( GRAPHICS_SYSTEM->getBackBuffer() );
+	///update units
+	//mpUnit->update( LOOP_TARGET_TIME/1000.0f );
+	//mpAIUnit->update( LOOP_TARGET_TIME/1000.0f );
+	//mpAIUnit2->update( LOOP_TARGET_TIME/1000.0f );
+	///draw units
+	//mpUnit->draw( GRAPHICS_SYSTEM->getBackBuffer() );
+	//mpAIUnit->draw( GRAPHICS_SYSTEM->getBackBuffer() );
+	//mpAIUnit2->draw( GRAPHICS_SYSTEM->getBackBuffer() );
+
+	mpUnitManager->updateAndDrawAllUnits(LOOP_TARGET_TIME / 1000.0f, GRAPHICS_SYSTEM->getBackBuffer());
 
 	mpMessageManager->processMessagesForThisframe();
 
@@ -282,7 +293,7 @@ void Game::processLoop()
 		al_get_mouse_state( &mouseState );
 
 		//create mouse text
-		stringstream mousePos;
+		stringstream mousePos;	
 		mousePos << mouseState.x << ":" << mouseState.y;
 
 		//write text at mouse position
