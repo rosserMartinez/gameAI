@@ -9,6 +9,7 @@
 #include <allegro5/allegro_primitives.h>
 
 #include <sstream>
+#include <ctime>
 
 #include "Game.h"
 #include "GraphicsSystem.h"
@@ -21,6 +22,7 @@
 #include "KinematicUnit.h"
 #include "PlayerMoveToMessage.h"
 #include "UnitManager.h"
+#include "InputManager.h"
 
 Game* gpGame = NULL;
 
@@ -48,6 +50,8 @@ Game::~Game()
 
 bool Game::init()
 {
+	srand(unsigned(time(NULL)));
+
 	mShouldExit = false;
 
 	//create Timers
@@ -200,12 +204,14 @@ bool Game::init()
 
 	mpUnitManager->addUnit(mpAIUnit2);
 
+	mpInputManager = new InputManager();
+
 	return true;
 }
 
 void Game::cleanup()
 {
-	//delete units
+	//delete units ///come back to this
 	delete mpUnit;
 	mpUnit = NULL;
 	delete mpAIUnit;
@@ -232,6 +238,8 @@ void Game::cleanup()
 
 	delete mpUnitManager;
 	mpUnitManager = NULL;
+	delete mpInputManager;
+	mpInputManager = NULL;
 
 	al_destroy_sample(mpSample);
 	mpSample = NULL;
@@ -274,43 +282,22 @@ void Game::processLoop()
 	mpMessageManager->processMessagesForThisframe();
 
 	//get input - should be moved someplace better
-	ALLEGRO_MOUSE_STATE mouseState;
-	al_get_mouse_state( &mouseState );
+	//ALLEGRO_MOUSE_STATE mouseState;
+	//al_get_mouse_state( &mouseState );
 
-	if( al_mouse_button_down( &mouseState, 1 ) )//left mouse click
-	{
-		Vector2D pos( mouseState.x, mouseState.y );
-		GameMessage* pMessage = new PlayerMoveToMessage( pos );
-		MESSAGE_MANAGER->addMessage( pMessage, 0 );
-	}
+	//if( al_mouse_button_down( &mouseState, 1 ) )//left mouse click
+	//{
+	//	Vector2D pos( mouseState.x, mouseState.y );
+	//	GameMessage* pMessage = new PlayerMoveToMessage( pos );
+	//	MESSAGE_MANAGER->addMessage( pMessage, 0 );
+	//}
+
+	mpInputManager->checkInput();
 
 
 
-	//all this should be moved to InputManager!!!
-	{
-		//get mouse state
-		ALLEGRO_MOUSE_STATE mouseState;
-		al_get_mouse_state( &mouseState );
 
-		//create mouse text
-		stringstream mousePos;	
-		mousePos << mouseState.x << ":" << mouseState.y;
 
-		//write text at mouse position
-		al_draw_text( mpFont, al_map_rgb( 255, 255, 255 ), mouseState.x, mouseState.y, ALLEGRO_ALIGN_CENTRE, mousePos.str().c_str() );
-
-		mpGraphicsSystem->swap();
-
-		//get current keyboard state
-		ALLEGRO_KEYBOARD_STATE keyState;
-		al_get_keyboard_state( &keyState );
-
-		//if escape key was down then exit the loop
-		if( al_key_down( &keyState, ALLEGRO_KEY_ESCAPE ) )
-		{
-			mShouldExit = true;
-		}
-	}
 }
 
 bool Game::endLoop()

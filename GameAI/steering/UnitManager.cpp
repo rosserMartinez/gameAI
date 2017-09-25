@@ -14,6 +14,11 @@ UnitManager::~UnitManager()
 	delete mpPlayerUnit;
 }
 
+KinematicUnit* UnitManager::getPlayerUnit()
+{
+	return mpPlayerUnit;
+}
+
 void UnitManager::addUnit(KinematicUnit* unitToAdd)
 {
 	mpUnitList.push_back(unitToAdd);

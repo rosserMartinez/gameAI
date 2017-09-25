@@ -18,6 +18,8 @@ public:
 	UnitManager(KinematicUnit* playerUnit);
 	~UnitManager();
 
+	KinematicUnit* getPlayerUnit();
+
 	void addUnit(KinematicUnit* unitToAdd);
 	void deleteRandomUnit();
 
