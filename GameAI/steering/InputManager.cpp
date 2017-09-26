@@ -52,31 +52,33 @@ void InputManager::checkInput()
 
 	if (al_key_down(&keyState, ALLEGRO_KEY_A))
 	{
-		int range = 200;
 
 		Vector2D tempPos = gpGame->getUnitManager()->getPlayerUnit()->getPosition();
 		Vector2D aPos(0.0f, 0.0f);
-
-		//calculate random pos over here but do that after you know it works
 		Vector2D vel(0.0f, 0.0f);
 
-		//if (tempPos.getX() - range < 0)
-		//{
-		//	aPos = (tempPos.getX() - range, tempPos.getY());
-		//}
-		//else if (tempPos.getX() + range < gpGame->getGraphicsSystem()->getWidth())
-		//{
-		//	aPos = (tempPos.getX() + range, tempPos.getY());
-		//}
-		//else if (tempPos.getY() - range < 0)
-		//{
-		//	aPos = (tempPos.getX(), tempPos.getY() - range);
-		//}
-		//else if (tempPos.getY() + range < gpGame->getGraphicsSystem()->getHeight())
-		//{
-		//	aPos = (tempPos.getX(), tempPos.getY() + range);
-		//}
+		//check pos to see if its out of bounds
+		if (tempPos.getX() > aRange)
+		{
+			aPos = tempPos;
+			aPos.setX(tempPos.getX() - aRange);
+		}
+		else if (tempPos.getX() + aRange < gpGame->getGraphicsSystem()->getWidth())
+		{
+			aPos = tempPos;
+			aPos.setX(tempPos.getX() + aRange);
 
+		}
+
+		if (tempPos.getY() > aRange)
+		{
+			aPos.setY(tempPos.getY() - aRange);
+
+		}
+		else if (tempPos.getY() + aRange > gpGame->getGraphicsSystem()->getHeight())
+		{
+			aPos.setY(tempPos.getY() - aRange);
+		}
 		
 
 		//make new unit here
@@ -86,13 +88,39 @@ void InputManager::checkInput()
 		GameMessage* pSpawnMessage = new SpawnUnitEvent(arriveTmp);
 		gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
 	}
+
 	if (al_key_down(&keyState, ALLEGRO_KEY_S))
 	{
-		Vector2D sPos(mouseState.x, mouseState.y);
+		//Vector2D sPos(mouseState.x, mouseState.y);
 
-		//calculate random pos over here but do that after you know it works
+		Vector2D tempPos = gpGame->getUnitManager()->getPlayerUnit()->getPosition();
+		Vector2D sPos(0.0f, 0.0f);
 		Vector2D vel(0.0f, 0.0f);
-		//100 range
+
+		//check pos to see if its out of bounds
+		if (tempPos.getX() > sRange)
+		{
+			sPos = tempPos;
+			sPos.setX(tempPos.getX() - sRange);
+		}
+		else if (tempPos.getX() + sRange < gpGame->getGraphicsSystem()->getWidth())
+		{
+			sPos = tempPos;
+			sPos.setX(tempPos.getX() + sRange);
+
+		}
+		
+		if (tempPos.getY() > sRange)
+		{
+			//sPos = tempPos;
+			sPos.setY(tempPos.getY() - sRange);
+
+		}
+		else if (tempPos.getY() + sRange > gpGame->getGraphicsSystem()->getHeight())
+		{
+			//sPos = tempPos;
+			sPos.setY(tempPos.getY() - sRange);
+		}
 
 		//make new unit here
 		KinematicUnit* seekTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), sPos, 1, vel, 0.0f, 200.0f, 100.0f);

@@ -17,7 +17,7 @@ void PlayerMoveToMessage::process()
 {
 	gpGame->getPlayerUnit()->arrive(mPos);
 
-	//just get the playerunit from unitmanager and tell that boy to move directly
+	//getting the playerunit from unitmanager and tell that boy to move directly
 
 }
 

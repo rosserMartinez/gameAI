@@ -211,13 +211,13 @@ bool Game::init()
 
 void Game::cleanup()
 {
-	//delete units ///come back to this
-	delete mpUnit;
-	mpUnit = NULL;
-	delete mpAIUnit;
-	mpAIUnit = NULL;
-	delete mpAIUnit2;
-	mpAIUnit2 = NULL;
+	//delete units
+	//delete mpUnit;
+	//mpUnit = NULL;
+	//delete mpAIUnit;
+	//mpAIUnit = NULL;
+	//delete mpAIUnit2;
+	//mpAIUnit2 = NULL;
 
 	//delete the timers
 	delete mpLoopTimer;
@@ -305,6 +305,11 @@ bool Game::endLoop()
 	//mpMasterTimer->start();
 	mpLoopTimer->sleepUntilElapsed( LOOP_TARGET_TIME );
 	return mShouldExit;
+}
+
+void Game::endGame()
+{
+	mShouldExit = true;
 }
 
 float genRandomBinomial()

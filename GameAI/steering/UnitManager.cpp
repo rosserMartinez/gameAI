@@ -2,6 +2,7 @@
 #include <ctime>
 #include "KinematicUnit.h"
 #include "GraphicsBuffer.h"
+#include "Game.h"
 
 UnitManager::UnitManager(KinematicUnit* playerUnit)
 {
@@ -12,6 +13,12 @@ UnitManager::UnitManager(KinematicUnit* playerUnit)
 UnitManager::~UnitManager()
 {
 	delete mpPlayerUnit;
+
+	for (size_t i = 0; i < mpUnitList.size(); ++i)
+	{
+		delete mpUnitList.at(i);
+		mpUnitList.at(i) = NULL;
+	}
 }
 
 KinematicUnit* UnitManager::getPlayerUnit()
@@ -26,13 +33,21 @@ void UnitManager::addUnit(KinematicUnit* unitToAdd)
 
 void UnitManager::deleteRandomUnit()
 {
+	if (mpUnitList.size() == 0)
+	{
+		gpGame->endGame();
+		return;
+	}
 	srand(unsigned(time(NULL)));
 
-	int randomNum = rand() % mpUnitList.size();
-	 
+	int randomNum = 0; 
+	
+	randomNum = rand() % mpUnitList.size();
+
 	delete mpUnitList.at(randomNum);
 
 	mpUnitList.erase(mpUnitList.begin() + randomNum);
+
 }
 
 	 

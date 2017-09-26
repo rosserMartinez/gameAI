@@ -17,5 +17,6 @@ DeleteUnitEvent::~DeleteUnitEvent()
 void DeleteUnitEvent::process()
 {
 	gpGame->getUnitManager()->deleteRandomUnit();
+
 }
 

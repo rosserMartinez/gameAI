@@ -16,6 +16,6 @@ EndGameEvent::~EndGameEvent()
 
 void EndGameEvent::process()
 {
-	gpGame->endLoop();
+	gpGame->endGame();
 }
 
