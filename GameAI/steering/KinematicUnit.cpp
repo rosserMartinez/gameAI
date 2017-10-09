@@ -9,6 +9,8 @@
 #include "KinematicWanderSteering.h"
 #include "DynamicSeekSteering.h"
 #include "DynamicArriveSteering.h"
+#include "WanderAndSeek.h"
+#include "WanderAndFlee.h"
 
 using namespace std;
 
@@ -118,3 +120,14 @@ void KinematicUnit::dynamicArrive( KinematicUnit* pTarget )
 	setSteering( pDynamicArriveSteering );
 }
 
+void KinematicUnit::wanderAndSeek(KinematicUnit* pTarget, float reactionRadius)
+{
+	WanderAndSeek* pWanderAndSeekSteering = new WanderAndSeek(this, gpGame->getPlayerUnit(), reactionRadius);
+	setSteering(pWanderAndSeekSteering);
+}
+
+void KinematicUnit::wanderAndFlee(KinematicUnit* pTarget, float reactionRadius)
+{
+	WanderAndFlee* pWanderAndFleeSteering = new WanderAndFlee(this, gpGame->getPlayerUnit(), reactionRadius);
+	setSteering(pWanderAndFleeSteering);
+}
