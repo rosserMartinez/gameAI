@@ -50,7 +50,7 @@ void InputManager::checkInput()
 	ALLEGRO_KEYBOARD_STATE keyState;
 	al_get_keyboard_state(&keyState);
 
-	if (al_key_down(&keyState, ALLEGRO_KEY_A))
+	if (al_key_down(&keyState, ALLEGRO_KEY_S))
 	{
 
 		Vector2D tempPos = gpGame->getUnitManager()->getPlayerUnit()->getPosition();
@@ -58,38 +58,38 @@ void InputManager::checkInput()
 		Vector2D vel(0.0f, 0.0f);
 
 		//check pos to see if its out of bounds
-		if (tempPos.getX() > aRange)
+		if (tempPos.getX() > sRange)
 		{
 			aPos = tempPos;
-			aPos.setX(tempPos.getX() - aRange);
+			aPos.setX(tempPos.getX() - sRange);
 		}
-		else if (tempPos.getX() + aRange < gpGame->getGraphicsSystem()->getWidth())
+		else if (tempPos.getX() + sRange < gpGame->getGraphicsSystem()->getWidth())
 		{
 			aPos = tempPos;
-			aPos.setX(tempPos.getX() + aRange);
+			aPos.setX(tempPos.getX() + sRange);
 
 		}
 
-		if (tempPos.getY() > aRange)
+		if (tempPos.getY() > sRange)
 		{
-			aPos.setY(tempPos.getY() - aRange);
+			aPos.setY(tempPos.getY() - sRange);
 
 		}
-		else if (tempPos.getY() + aRange > gpGame->getGraphicsSystem()->getHeight())
+		else if (tempPos.getY() + sRange > gpGame->getGraphicsSystem()->getHeight())
 		{
-			aPos.setY(tempPos.getY() - aRange);
+			aPos.setY(tempPos.getY() - sRange);
 		}
 		
 
 		//make new unit here
-		KinematicUnit* arriveTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), aPos, 1, vel, 0.0f, 200.0f, 100.0f);
-		arriveTmp->dynamicArrive(gpGame->getUnitManager()->getPlayerUnit());
+		KinematicUnit* seekTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), aPos, 1, vel, 0.0f, 125.0f, 100.0f);
+		seekTmp->wanderAndSeek(gpGame->getUnitManager()->getPlayerUnit(), gpGame->getUnitManager()->getReactionRadius());
 
-		GameMessage* pSpawnMessage = new SpawnUnitEvent(arriveTmp);
+		GameMessage* pSpawnMessage = new SpawnUnitEvent(seekTmp);
 		gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
 	}
 
-	if (al_key_down(&keyState, ALLEGRO_KEY_S))
+	if (al_key_down(&keyState, ALLEGRO_KEY_F))
 	{
 		//Vector2D sPos(mouseState.x, mouseState.y);
 
@@ -98,35 +98,35 @@ void InputManager::checkInput()
 		Vector2D vel(0.0f, 0.0f);
 
 		//check pos to see if its out of bounds
-		if (tempPos.getX() > sRange)
+		if (tempPos.getX() > fRange)
 		{
 			sPos = tempPos;
-			sPos.setX(tempPos.getX() - sRange);
+			sPos.setX(tempPos.getX() - fRange);
 		}
-		else if (tempPos.getX() + sRange < gpGame->getGraphicsSystem()->getWidth())
+		else if (tempPos.getX() + fRange < gpGame->getGraphicsSystem()->getWidth())
 		{
 			sPos = tempPos;
-			sPos.setX(tempPos.getX() + sRange);
+			sPos.setX(tempPos.getX() + fRange);
 
 		}
 		
-		if (tempPos.getY() > sRange)
+		if (tempPos.getY() > fRange)
 		{
 			//sPos = tempPos;
-			sPos.setY(tempPos.getY() - sRange);
+			sPos.setY(tempPos.getY() - fRange);
 
 		}
-		else if (tempPos.getY() + sRange > gpGame->getGraphicsSystem()->getHeight())
+		else if (tempPos.getY() + fRange > gpGame->getGraphicsSystem()->getHeight())
 		{
 			//sPos = tempPos;
-			sPos.setY(tempPos.getY() - sRange);
+			sPos.setY(tempPos.getY() - fRange);
 		}
 
 		//make new unit here
-		KinematicUnit* seekTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), sPos, 1, vel, 0.0f, 200.0f, 100.0f);
-		seekTmp->dynamicSeek(gpGame->getUnitManager()->getPlayerUnit());
+		KinematicUnit* fleeTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), sPos, 1, vel, 0.0f, 125.0f, 100.0f);
+		fleeTmp->wanderAndFlee(gpGame->getUnitManager()->getPlayerUnit(), gpGame->getUnitManager()->getReactionRadius());
 
-		GameMessage* pSpawnMessage = new SpawnUnitEvent(seekTmp);
+		GameMessage* pSpawnMessage = new SpawnUnitEvent(fleeTmp);
 		gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
 
 	}
@@ -136,6 +136,17 @@ void InputManager::checkInput()
 		GameMessage* pDeleteMessage = new DeleteUnitEvent();
 		gpGame->getMessageManager()->addMessage(pDeleteMessage, 0);
 	}
+
+	//if (al_key_down(&keyState, ALLEGRO_KEY_I))
+	//{
+	//	mDebugToggled = true;
+	//	mSelectedProperty = //not apriority
+	//}
+
+	//if (mDebugToggled)
+	//{
+
+	//}
 
 	//if escape key was down then exit the loop
 	if (al_key_down(&keyState, ALLEGRO_KEY_ESCAPE))

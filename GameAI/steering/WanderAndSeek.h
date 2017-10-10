@@ -4,7 +4,8 @@
 
 class KinematicUnit;
 
-const float MAX_WANDER_ROTATION = 1.0f;
+//this is supposed to be infinity but idk how to rotate my 8s
+const float infinityTM = 500000;
 
 class WanderAndSeek :public Steering
 {
@@ -17,8 +18,14 @@ public:
 	virtual Steering* getSteering();
 
 private:
+	Vector2D mMainWhisker;
+	Vector2D mOffWhiskerUp;
+	Vector2D mOffWhiskerDown;
+
 	KinematicUnit* mpTarget;
 	KinematicUnit* mpMover;
 	bool mShouldFlee;
 	float mReactionRadius;
+	float mMAX_WANDER_ROTATION = 1.0f;
+	float mCollCheckRadius = 500.0f;
 };

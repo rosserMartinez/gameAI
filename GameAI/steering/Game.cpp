@@ -7,6 +7,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 #include <allegro5/allegro_primitives.h>
+#include <allegro5/color.h>
 
 #include <sstream>
 #include <ctime>
@@ -28,7 +29,7 @@ Game* gpGame = NULL;
 
 const int WIDTH = 1024;
 const int HEIGHT = 768;
-
+const int INIT_REACTION_RADIUS = 47000;
 Game::Game()
 	:mpGraphicsSystem(NULL)
 	,mpGraphicsBufferManager(NULL)
@@ -192,10 +193,11 @@ bool Game::init()
 	Vector2D pos2( 1000.0f, 500.0f );
 	Vector2D vel2( 0.0f, 0.0f );
 	mpAIUnit = new KinematicUnit( pEnemyArrow, pos2, 1, vel2, 0.0f, 180.0f, 100.0f );
+	mpUnitManager->setUnitWalls();
 	//give steering behavior
-	mpAIUnit->dynamicArrive( mpUnit ); 
+//	mpAIUnit->dynamicArrive( mpUnit ); 
 
-	mpUnitManager->addUnit(mpAIUnit);
+//	mpUnitManager->addUnit(mpAIUnit);
 
 	Vector2D pos3( 500.0f, 500.0f );
 	mpAIUnit2 = new KinematicUnit( pEnemyArrow, pos3, 1, vel2, 0.0f, 180.0f, 100.0f );
@@ -203,21 +205,14 @@ bool Game::init()
 	mpAIUnit2->dynamicSeek( mpUnit );  
 
 	mpUnitManager->addUnit(mpAIUnit2);
+	mpUnitManager->setReactionRadius(INIT_REACTION_RADIUS);
 
 	mpInputManager = new InputManager();
-
 	return true;
 }
 
 void Game::cleanup()
 {
-	//delete units
-	//delete mpUnit;
-	//mpUnit = NULL;
-	//delete mpAIUnit;
-	//mpAIUnit = NULL;
-	//delete mpAIUnit2;
-	//mpAIUnit2 = NULL;
 
 	//delete the timers
 	delete mpLoopTimer;

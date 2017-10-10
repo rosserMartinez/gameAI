@@ -58,6 +58,10 @@ private:
 	float mMaxVelocity;
 	float mMaxAcceleration;
 
+	Vector2D mMainWhisker;
+	Vector2D mOffWhiskerUp;
+	Vector2D mOffWhiskerDown;
+
 	void setSteering( Steering* pSteering );
 
 };

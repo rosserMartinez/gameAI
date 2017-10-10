@@ -70,6 +70,7 @@ void KinematicUnit::update(float time)
 
 	//set the orientation to match the direction of travel
 	//setNewOrientation();
+
 }
 
 //private - deletes old Steering before setting
