@@ -18,9 +18,6 @@ public:
 	virtual Steering* getSteering();
 
 private:
-	Vector2D mMainWhisker;
-	Vector2D mOffWhiskerUp;
-	Vector2D mOffWhiskerDown;
 
 	KinematicUnit* mpTarget;
 	KinematicUnit* mpMover;

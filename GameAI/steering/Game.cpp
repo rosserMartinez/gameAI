@@ -187,25 +187,32 @@ bool Game::init()
 	Vector2D pos( 0.0f, 0.0f );
 	Vector2D vel( 0.0f, 0.0f );
 	mpUnit = new KinematicUnit( pArrowSprite, pos, 1, vel, 0.0f, 200.0f, 10.0f );
+	mpUnit->flock();
 
-	mpUnitManager = new UnitManager(mpUnit);
+	mpUnitManager = new UnitManager();
 
-	Vector2D pos2( 1000.0f, 500.0f );
-	Vector2D vel2( 0.0f, 0.0f );
-	mpAIUnit = new KinematicUnit( pEnemyArrow, pos2, 1, vel2, 0.0f, 180.0f, 100.0f );
-	mpUnitManager->setUnitWalls();
+	//mpUnitManager->addUnit(mpUnit);
+	//mpUnitManager->addUnit(mpUnit);
+	//mpUnitManager->addUnit(mpUnit);
+	//mpUnitManager->addUnit(mpUnit);
+
+
+//	Vector2D pos2( 1000.0f, 500.0f );
+//	Vector2D vel2( 0.0f, 0.0f );
+//	mpAIUnit = new KinematicUnit( pEnemyArrow, pos2, 1, vel2, 0.0f, 180.0f, 100.0f );
+	//mpUnitManager->setUnitWalls();
 	//give steering behavior
 //	mpAIUnit->dynamicArrive( mpUnit ); 
 
 //	mpUnitManager->addUnit(mpAIUnit);
 
-	Vector2D pos3( 500.0f, 500.0f );
-	mpAIUnit2 = new KinematicUnit( pEnemyArrow, pos3, 1, vel2, 0.0f, 180.0f, 100.0f );
+	//Vector2D pos3( 500.0f, 500.0f );
+	//mpAIUnit2 = new KinematicUnit( pEnemyArrow, pos3, 1, vel2, 0.0f, 180.0f, 100.0f );
 	//give steering behavior
-	mpAIUnit2->dynamicSeek( mpUnit );  
+	//mpAIUnit2->dynamicSeek( mpUnit );  
 
-	mpUnitManager->addUnit(mpAIUnit2);
-	mpUnitManager->setReactionRadius(INIT_REACTION_RADIUS);
+	//mpUnitManager->addUnit(mpAIUnit2);
+	//mpUnitManager->setReactionRadius(INIT_REACTION_RADIUS);
 
 	mpInputManager = new InputManager();
 	return true;
@@ -263,15 +270,6 @@ void Game::processLoop()
 	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
 	pBackgroundSprite->draw( *(mpGraphicsSystem->getBackBuffer()), 0, 0 );
 
-	///update units
-	//mpUnit->update( LOOP_TARGET_TIME/1000.0f );
-	//mpAIUnit->update( LOOP_TARGET_TIME/1000.0f );
-	//mpAIUnit2->update( LOOP_TARGET_TIME/1000.0f );
-	///draw units
-	//mpUnit->draw( GRAPHICS_SYSTEM->getBackBuffer() );
-	//mpAIUnit->draw( GRAPHICS_SYSTEM->getBackBuffer() );
-	//mpAIUnit2->draw( GRAPHICS_SYSTEM->getBackBuffer() );
-
 	mpUnitManager->updateAndDrawAllUnits(LOOP_TARGET_TIME / 1000.0f, GRAPHICS_SYSTEM->getBackBuffer());
 
 	mpMessageManager->processMessagesForThisframe();
@@ -288,10 +286,6 @@ void Game::processLoop()
 	//}
 
 	mpInputManager->checkInput();
-
-
-
-
 
 }
 

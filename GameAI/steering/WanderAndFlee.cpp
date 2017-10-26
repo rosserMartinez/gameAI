@@ -16,7 +16,7 @@ WanderAndFlee::WanderAndFlee(KinematicUnit *pMover, KinematicUnit* pTarget, floa
 Steering* WanderAndFlee::getSteering()
 {
 
-
+	/*
 	float shortestTime = alsoInfinityTM;
 	bool collisionFound = false;
 	int indexForTmpTarget;
@@ -39,7 +39,7 @@ Steering* WanderAndFlee::getSteering()
 		float sep = dist - (relativeSpeed * shortestTime);
 		if (sep > 2 * mCollCheckRadius)
 		{
-			if (timeTilCollision > 0 && timeTilCollision < shortestTime /*&& collisionFound == false*/)
+			if (timeTilCollision > 0 && timeTilCollision < shortestTime /*&& collisionFound == false)
 			{
 				collisionFound = true;
 				shortestTime = timeTilCollision;
@@ -51,7 +51,6 @@ Steering* WanderAndFlee::getSteering()
 			}
 		}
 	}
-
 	if (collisionFound)
 	{
 		//relative pos for the sake of this loop here
@@ -76,6 +75,7 @@ Steering* WanderAndFlee::getSteering()
 	}
 	else
 	{
+	*/
 		float a = (mpMover->getPosition() - mpTarget->getPosition()).getX();
 		float b = (mpMover->getPosition() - mpTarget->getPosition()).getY();
 
@@ -104,5 +104,5 @@ Steering* WanderAndFlee::getSteering()
 			mAngular = mpMover->getOrientation() + (genRandomBinomial() * MAX_WANDER_ROTATION);
 			return this;
 		}
-	}
+	//}
 }

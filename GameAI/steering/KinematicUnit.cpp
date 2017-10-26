@@ -11,6 +11,7 @@
 #include "DynamicArriveSteering.h"
 #include "WanderAndSeek.h"
 #include "WanderAndFlee.h"
+#include "Flocking.h"
 
 using namespace std;
 
@@ -131,4 +132,11 @@ void KinematicUnit::wanderAndFlee(KinematicUnit* pTarget, float reactionRadius)
 {
 	WanderAndFlee* pWanderAndFleeSteering = new WanderAndFlee(this, gpGame->getPlayerUnit(), reactionRadius);
 	setSteering(pWanderAndFleeSteering);
+}
+
+void KinematicUnit::flock()
+{
+	//FLOCKA
+	Flocking* pFlock = new Flocking( this );
+	setSteering(pFlock);
 }

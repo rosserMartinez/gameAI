@@ -22,7 +22,7 @@ Steering* WanderAndSeek::getSteering()
 	//Vector2D tmpLinearAvoid;
 	//Vector2D tmpLinearSeekWander;
 
-
+	/*
 	float shortestTime = infinityTM;
 	bool collisionFound = false;
 	int indexForTmpTarget;
@@ -45,7 +45,7 @@ Steering* WanderAndSeek::getSteering()
 		float sep = dist - (relativeSpeed * shortestTime);
 		if (sep > 2 * mCollCheckRadius)
 		{
-			if (timeTilCollision > 0 && timeTilCollision < shortestTime /*&& collisionFound == false*/)
+			if (timeTilCollision > 0 && timeTilCollision < shortestTime /*&& collisionFound == false)
 			{
 				collisionFound = true;
 				shortestTime = timeTilCollision;
@@ -81,6 +81,7 @@ Steering* WanderAndSeek::getSteering()
 		//return this;
 	}
 	else
+	*/
 	{
 		float a = (mpTarget->getPosition() - mpMover->getPosition()).getX();
 		float b = (mpTarget->getPosition() - mpMover->getPosition()).getY();
@@ -98,8 +99,7 @@ Steering* WanderAndSeek::getSteering()
 
 			mLinear.normalize();
 			mLinear *= mpMover->getMaxVelocity();
-			//mAngular = mpMover->getOrientation();
-			mAngular = Kinematic::getOrientationFromVelocity(mpMover->getOrientation(), mLinear);
+			mAngular = mpMover->getOrientationFromVelocity(mpMover->getOrientation(), mLinear);
 
 			//tmpLinearSeekWander = mpMover->getMaxVelocity();
 			//return this;

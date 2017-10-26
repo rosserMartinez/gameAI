@@ -51,16 +51,14 @@ public:
 	void wanderAndSeek(KinematicUnit* pTarget, float reactionRadius);
 	void wanderAndFlee(KinematicUnit* pTarget, float reactionRadius);
 
+	void flock();
+
 private:
 	Sprite* mpSprite;
 	Steering* mpCurrentSteering;
 	Vector2D mTarget;//used only for Kinematic seek and arrive
 	float mMaxVelocity;
 	float mMaxAcceleration;
-
-	Vector2D mMainWhisker;
-	Vector2D mOffWhiskerUp;
-	Vector2D mOffWhiskerDown;
 
 	void setSteering( Steering* pSteering );
 

@@ -11,11 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Alignment.h" />
+    <ClInclude Include="Cohesion.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="DeleteUnitEvent.h" />
     <ClInclude Include="DynamicArriveSteering.h" />
     <ClInclude Include="DynamicSeekSteering.h" />
     <ClInclude Include="EndGameEvent.h" />
+    <ClInclude Include="Flocking.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMessage.h" />
     <ClInclude Include="GameMessageManager.h" />
@@ -29,6 +32,7 @@
     <ClInclude Include="KinematicUnit.h" />
     <ClInclude Include="KinematicWanderSteering.h" />
     <ClInclude Include="PlayerMoveToMessage.h" />
+    <ClInclude Include="Separation.h" />
     <ClInclude Include="SpawnUnitEvent.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
@@ -38,10 +42,13 @@
     <ClInclude Include="WanderAndSeek.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Alignment.cpp" />
+    <ClCompile Include="Cohesion.cpp" />
     <ClCompile Include="DeleteUnitEvent.cpp" />
     <ClCompile Include="DynamicArriveSteering.cpp" />
     <ClCompile Include="DynamicSeekSteering.cpp" />
     <ClCompile Include="EndGameEvent.cpp" />
+    <ClCompile Include="Flocking.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMessage.cpp" />
     <ClCompile Include="GameMessageManager.cpp" />
@@ -56,6 +63,7 @@
     <ClCompile Include="KinematicWanderSteering.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PlayerMoveToMessage.cpp" />
+    <ClCompile Include="Separation.cpp" />
     <ClCompile Include="SpawnUnitEvent.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />

@@ -11,17 +11,18 @@ class UnitManager : public Trackable
 {
 private:
 	std::vector<KinematicUnit*> mpUnitList;
-	std::vector<KinematicUnit*> mpWallList;
+	//std::vector<KinematicUnit*> mpWallList;
 
-	KinematicUnit* mpPlayerUnit;
+	//KinematicUnit* mpPlayerUnit;
 
 	float mCurrentReactionRadius;
 
 public:
-	UnitManager(KinematicUnit* playerUnit);
+	UnitManager();
 	~UnitManager();
 
-	KinematicUnit* getPlayerUnit();
+	//KinematicUnit* getPlayerUnit();
+	KinematicUnit* getUnit(int index);
 
 	void addUnit(KinematicUnit* unitToAdd);
 	void deleteRandomUnit();
@@ -31,10 +32,6 @@ public:
 	//lolllll
 	inline std::vector<KinematicUnit*> getUnitList() { return mpUnitList; };
 	inline size_t getUnitListSize() { return mpUnitList.size(); };
-
-	//enter janktown
-	void setUnitWalls();
-	inline void addWall(KinematicUnit* unitToAdd) {mpWallList.push_back(unitToAdd); };
 
 	inline float getReactionRadius() { return mCurrentReactionRadius; };
 	void setReactionRadius(float newRadius);
