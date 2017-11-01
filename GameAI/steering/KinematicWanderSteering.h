@@ -16,5 +16,6 @@ public:
 
 private:
 	KinematicUnit* mpMover;
+	float mMAX_WANDER_ROTATION = 1.0f;
 };
 

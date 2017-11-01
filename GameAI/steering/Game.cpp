@@ -214,6 +214,11 @@ bool Game::init()
 	//mpUnitManager->addUnit(mpAIUnit2);
 	//mpUnitManager->setReactionRadius(INIT_REACTION_RADIUS);
 
+	mAlignmentWeight = 3000.0f;
+	mCohesionWeight = 2000.0f;
+	mSeparationWeight = 6000.0f;
+	mWanderWeight = 10.0f;
+
 	mpInputManager = new InputManager();
 	return true;
 }

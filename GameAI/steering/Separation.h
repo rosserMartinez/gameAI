@@ -19,5 +19,5 @@ private:
 	//KinematicUnit* mpTarget;
 	KinematicUnit* mpMover;
 	float mMAX_WANDER_ROTATION = 1.0f;
-	float mReactionRadius = 500.0f;
+	float mReactionRadius = 200.0f;
 };

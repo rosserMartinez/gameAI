@@ -52,40 +52,16 @@ void InputManager::checkInput()
 
 	if (al_key_down(&keyState, ALLEGRO_KEY_I))
 	{
-		Vector2D aPos(400.0f, 400.0f);
+		Vector2D aPos(mouseState.x, mouseState.y);
 		Vector2D vel(0.0f, 0.0f);
 
 		KinematicUnit* boid = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), aPos, 1, vel, 0.0f, 125.0f, 100.0f);
 		boid->flock();
 
-			GameMessage* pSpawnMessage = new SpawnUnitEvent(boid);
-			gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
+		GameMessage* pSpawnMessage = new SpawnUnitEvent(boid);
+		gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
 
-	//	Vector2D tempPos = gpGame->getUnitManager()->getPlayerUnit()->getPosition();
 
-	//	//check pos to see if its out of bounds
-	//	if (tempPos.getX() > sRange)
-	//	{
-	//		aPos = tempPos;
-	//		aPos.setX(tempPos.getX() - sRange);
-	//	}
-	//	else if (tempPos.getX() + sRange < gpGame->getGraphicsSystem()->getWidth())
-	//	{
-	//		aPos = tempPos;
-	//		aPos.setX(tempPos.getX() + sRange);
-
-	//	}
-
-	//	if (tempPos.getY() > sRange)
-	//	{
-	//		aPos.setY(tempPos.getY() - sRange);
-
-	//	}
-	//	else if (tempPos.getY() + sRange > gpGame->getGraphicsSystem()->getHeight())
-	//	{
-	//		aPos.setY(tempPos.getY() - sRange);
-	//	}
-	//	
 
 	//	//make new unit here
 	//	KinematicUnit* seekTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), aPos, 1, vel, 0.0f, 125.0f, 100.0f);
@@ -142,12 +118,6 @@ void InputManager::checkInput()
 		GameMessage* pDeleteMessage = new DeleteUnitEvent();
 		gpGame->getMessageManager()->addMessage(pDeleteMessage, 0);
 	}
-
-	//if (al_key_down(&keyState, ALLEGRO_KEY_I))
-	//{
-	//	mDebugToggled = true;
-	//	mSelectedProperty = //not apriority
-	//}
 
 	//if (mDebugToggled)
 	//{

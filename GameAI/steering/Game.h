@@ -51,11 +51,22 @@ public:
 	inline ALLEGRO_FONT* getFont() const { return mpFont; };
 	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 
+	inline float getAlignmentWeight() const { return mAlignmentWeight; };
+	inline float getCohesionWeight() const { return mCohesionWeight; };
+	inline float getSeparationWeight() const { return mSeparationWeight; };
+	inline float getWanderWeight() const { return mWanderWeight; };
+
+	inline void getAlignmentWeight(float newWeight) { mAlignmentWeight = newWeight; };
+	inline void getCohesionWeight(float newWeight)  {  mCohesionWeight = newWeight; };
+	inline void getSeparationWeight(float newWeight)  {  mSeparationWeight = newWeight; };
+	inline void getWanderWeight(float newWeight)  {  mWanderWeight = newWeight; };
+
+
 
 	///you already know what it is
 	inline KinematicUnit* getPlayerUnit() { return mpUnit; };//should be someplace else
-	inline KinematicUnit* getAIUnit() { return mpAIUnit; };//should be someplace else
-	inline KinematicUnit* getAIUnit2() { return mpAIUnit2; };//should be someplace else
+	//inline KinematicUnit* getAIUnit() { return mpAIUnit; };//should be someplace else
+	//inline KinematicUnit* getAIUnit2() { return mpAIUnit2; };//should be someplace else
 
 private:
 	GraphicsSystem* mpGraphicsSystem;
@@ -78,8 +89,14 @@ private:
 	IDType mEnemyIconBufferID;
 
 	KinematicUnit* mpUnit;
-	KinematicUnit* mpAIUnit;
-	KinematicUnit* mpAIUnit2;
+//	KinematicUnit* mpAIUnit;
+//	KinematicUnit* mpAIUnit2;
+
+	float mAlignmentWeight;
+	float mCohesionWeight;
+	float mSeparationWeight;
+	float mWanderWeight;
+
 };
 
 float genRandomBinomial();//range -1:1 from "Artificial Intelligence for Games", Millington and Funge

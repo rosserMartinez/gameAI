@@ -88,6 +88,9 @@
     <ClCompile Include="Flocking.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
+    <ClCompile Include="VelocityMatching.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -175,6 +178,9 @@
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
     <ClInclude Include="Flocking.h">
+      <Filter>Header Files\Steering</Filter>
+    </ClInclude>
+    <ClInclude Include="VelocityMatching.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
   </ItemGroup>

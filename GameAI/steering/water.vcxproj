@@ -38,6 +38,7 @@
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Steering.h" />
     <ClInclude Include="UnitManager.h" />
+    <ClInclude Include="VelocityMatching.h" />
     <ClInclude Include="WanderAndFlee.h" />
     <ClInclude Include="WanderAndSeek.h" />
   </ItemGroup>
@@ -69,6 +70,7 @@
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Steering.cpp" />
     <ClCompile Include="UnitManager.cpp" />
+    <ClCompile Include="VelocityMatching.cpp" />
     <ClCompile Include="WanderAndFlee.cpp" />
     <ClCompile Include="WanderAndSeek.cpp" />
   </ItemGroup>

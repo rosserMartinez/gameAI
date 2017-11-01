@@ -6,12 +6,13 @@ class KinematicUnit;
 class Alignment;
 class Cohesion;
 class Separation;
+class KinematicWanderSteering;
 
 class Flocking :public Steering
 {
 public:
 	Flocking(KinematicUnit* pMover);
-	~Flocking() {};
+	~Flocking();
 
 	//	void setTarget(KinematicUnit* pTarget) { mpTarget = pTarget; };
 
@@ -27,9 +28,11 @@ private:
 	Alignment* mpAlignment;
 	Cohesion* mpCohesion;
 	Separation* mpSeparation;
+	KinematicWanderSteering* mpWander;
 
-	float mAlignmentWeight = .33f;
-	float mCohesionWeight = .33f;
-	float mSeparationWeight = .33f;
+	float mAlignmentWeight = 3000.0f;
+	float mCohesionWeight = 2000.0f;
+	float mSeparationWeight = 6000.0f;
+	float mWanderWeight = 10.0f;
 
 };

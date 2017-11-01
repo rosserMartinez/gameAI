@@ -2,6 +2,7 @@
 #include "KinematicUnit.h"
 #include "Game.h"
 #include "UnitManager.h"
+#include "allegro5/allegro_primitives.h"
 
 Separation::Separation(KinematicUnit *pMover)
 	:mpMover(pMover)
@@ -13,6 +14,8 @@ Steering* Separation::getSteering()
 {
 	//mlinear is the linear velocity of the steering, vectors should work out that way
 	// LETS SEE UH
+
+	al_draw_circle(mpMover->getPosition().getX(), mpMover->getPosition().getY(), mReactionRadius, al_map_rgb(255, 255, 255), 1.0f);
 
 	Vector2D tmp = (0, 0);
 	int flockCount = 0;
@@ -38,8 +41,10 @@ Steering* Separation::getSteering()
 				++flockCount;
 			}
 		}
-
 	}
+
+//	std::cout << flockCount;
+
 	if (flockCount == 0)
 	{
 		mLinear = tmp;
