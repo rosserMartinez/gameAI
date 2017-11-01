@@ -7,6 +7,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_audio.h>
 #include <string>
+#include <fstream>
 
 class GraphicsSystem;
 class GraphicsBuffer;
@@ -80,6 +81,11 @@ private:
 	Timer* mpMasterTimer;
 	bool mShouldExit;
 
+
+	std::string mDebugStats;
+	std::ofstream mFout;
+	std::ifstream mFin;
+
 	//should be somewhere else
 	ALLEGRO_FONT* mpFont;
 //	ALLEGRO_COLOR* mpColor;
@@ -92,10 +98,10 @@ private:
 //	KinematicUnit* mpAIUnit;
 //	KinematicUnit* mpAIUnit2;
 
-	float mAlignmentWeight;
-	float mCohesionWeight;
-	float mSeparationWeight;
-	float mWanderWeight;
+	int mAlignmentWeight;
+	int mCohesionWeight;
+	int mSeparationWeight;
+	int mWanderWeight;
 
 };
 

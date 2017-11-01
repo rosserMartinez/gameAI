@@ -10,6 +10,8 @@
 #include <allegro5/color.h>
 
 #include <sstream>
+#include <string>
+#include <fstream>
 #include <ctime>
 
 #include "Game.h"
@@ -214,12 +216,32 @@ bool Game::init()
 	//mpUnitManager->addUnit(mpAIUnit2);
 	//mpUnitManager->setReactionRadius(INIT_REACTION_RADIUS);
 
-	mAlignmentWeight = 3000.0f;
-	mCohesionWeight = 2000.0f;
-	mSeparationWeight = 6000.0f;
-	mWanderWeight = 10.0f;
+	//mAlignmentWeight = 3000;
+	//mCohesionWeight = 2000;
+	//mSeparationWeight = 6000;
+	//mWanderWeight = 10;
 
 	mpInputManager = new InputManager();
+	mDebugStats = "debug.txt";
+	
+	string trash;
+
+	mFin.open(mDebugStats);
+	getline(mFin, trash);
+	mAlignmentWeight = atoi(trash.c_str());
+
+	getline(mFin, trash);
+	mCohesionWeight = atoi(trash.c_str());
+
+	getline(mFin, trash);
+	mSeparationWeight = atoi(trash.c_str());
+
+	getline(mFin, trash);
+	mWanderWeight = atoi(trash.c_str());
+
+	mFin.close();
+
+
 	return true;
 }
 

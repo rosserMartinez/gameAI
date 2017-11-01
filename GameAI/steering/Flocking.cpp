@@ -13,6 +13,11 @@ Flocking::Flocking(KinematicUnit *pMover)
 {
 	mApplyDirectly = true;
 
+	mAlignmentWeight = gpGame->getAlignmentWeight();
+	mCohesionWeight = gpGame->getCohesionWeight();
+	mSeparationWeight = gpGame->getSeparationWeight();
+	mWanderWeight = gpGame->getWanderWeight();
+
 	mpAlignment = new Alignment(pMover);
 	mpCohesion = new Cohesion(pMover);
 	mpSeparation = new Separation(pMover);

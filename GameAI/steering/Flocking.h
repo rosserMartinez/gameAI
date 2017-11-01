@@ -8,7 +8,7 @@ class Cohesion;
 class Separation;
 class KinematicWanderSteering;
 
-class Flocking :public Steering
+class Flocking :public Steering, public Trackable
 {
 public:
 	Flocking(KinematicUnit* pMover);
@@ -30,9 +30,9 @@ private:
 	Separation* mpSeparation;
 	KinematicWanderSteering* mpWander;
 
-	float mAlignmentWeight = 3000.0f;
-	float mCohesionWeight = 2000.0f;
-	float mSeparationWeight = 6000.0f;
-	float mWanderWeight = 10.0f;
+	int mAlignmentWeight;
+	int mCohesionWeight;
+	int mSeparationWeight;
+	int mWanderWeight;
 
 };

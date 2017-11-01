@@ -60,56 +60,10 @@ void InputManager::checkInput()
 
 		GameMessage* pSpawnMessage = new SpawnUnitEvent(boid);
 		gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
-
-
-
-	//	//make new unit here
-	//	KinematicUnit* seekTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), aPos, 1, vel, 0.0f, 125.0f, 100.0f);
-	////	seekTmp->wanderAndSeek(gpGame->getUnitManager()->getPlayerUnit(), gpGame->getUnitManager()->getReactionRadius());
-
-	//	GameMessage* pSpawnMessage = new SpawnUnitEvent(seekTmp);
-	//	gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
 	}
 
 	if (al_key_down(&keyState, ALLEGRO_KEY_F))
 	{
-		////Vector2D sPos(mouseState.x, mouseState.y);
-
-		////Vector2D tempPos = gpGame->getUnitManager()->getPlayerUnit()->getPosition();
-		//Vector2D sPos(0.0f, 0.0f);
-		//Vector2D vel(0.0f, 0.0f);
-
-		////check pos to see if its out of bounds
-		//if (tempPos.getX() > fRange)
-		//{
-		//	sPos = tempPos;
-		//	sPos.setX(tempPos.getX() - fRange);
-		//}
-		//else if (tempPos.getX() + fRange < gpGame->getGraphicsSystem()->getWidth())
-		//{
-		//	sPos = tempPos;
-		//	sPos.setX(tempPos.getX() + fRange);
-
-		//}
-		//
-		//if (tempPos.getY() > fRange)
-		//{
-		//	//sPos = tempPos;
-		//	sPos.setY(tempPos.getY() - fRange);
-
-		//}
-		//else if (tempPos.getY() + fRange > gpGame->getGraphicsSystem()->getHeight())
-		//{
-		//	//sPos = tempPos;
-		//	sPos.setY(tempPos.getY() - fRange);
-		//}
-
-		////make new unit here
-		//KinematicUnit* fleeTmp = new KinematicUnit(gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID), sPos, 1, vel, 0.0f, 125.0f, 100.0f);
-		////fleeTmp->wanderAndFlee(gpGame->getUnitManager()->getPlayerUnit(), gpGame->getUnitManager()->getReactionRadius());
-
-		//GameMessage* pSpawnMessage = new SpawnUnitEvent(fleeTmp);
-		//gpGame->getMessageManager()->addMessage(pSpawnMessage, 0);
 
 	}
 	if (al_key_down(&keyState, ALLEGRO_KEY_D))
