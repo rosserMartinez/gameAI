@@ -13,10 +13,11 @@ Flocking::Flocking(KinematicUnit *pMover)
 {
 	mApplyDirectly = true;
 
-	mAlignmentWeight = gpGame->getAlignmentWeight();
+	/*mAlignmentWeight = gpGame->getAlignmentWeight();
 	mCohesionWeight = gpGame->getCohesionWeight();
 	mSeparationWeight = gpGame->getSeparationWeight();
-	mWanderWeight = gpGame->getWanderWeight();
+	mWanderWeight = gpGame->getWanderWeight();*/
+	updateWeights();
 
 	mpAlignment = new Alignment(pMover);
 	mpCohesion = new Cohesion(pMover);
@@ -57,4 +58,12 @@ Steering* Flocking::getSteering()
 
 	//BLEND STEERING HERE
 	return this;
+}
+
+void Flocking::updateWeights()
+{
+	mAlignmentWeight = gpGame->getAlignmentWeight();
+	mCohesionWeight = gpGame->getCohesionWeight();
+	mSeparationWeight = gpGame->getSeparationWeight();
+	mWanderWeight = gpGame->getWanderWeight();
 }

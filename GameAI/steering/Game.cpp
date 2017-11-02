@@ -221,7 +221,6 @@ bool Game::init()
 	//mSeparationWeight = 6000;
 	//mWanderWeight = 10;
 
-	mpInputManager = new InputManager();
 	mDebugStats = "debug.txt";
 	
 	string trash;
@@ -242,6 +241,7 @@ bool Game::init()
 	mFin.close();
 
 
+	mpInputManager = new InputManager();
 	return true;
 }
 

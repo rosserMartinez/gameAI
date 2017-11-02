@@ -34,7 +34,7 @@ public:
 	inline size_t getUnitListSize() { return mpUnitList.size(); };
 
 	inline float getReactionRadius() { return mCurrentReactionRadius; };
-	void setReactionRadius(float newRadius);
+	void updateFlockWeights();
 };
 
 #endif //

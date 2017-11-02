@@ -52,15 +52,18 @@ public:
 	inline ALLEGRO_FONT* getFont() const { return mpFont; };
 	inline UnitManager* getUnitManager() const { return mpUnitManager; };
 
-	inline float getAlignmentWeight() const { return mAlignmentWeight; };
-	inline float getCohesionWeight() const { return mCohesionWeight; };
-	inline float getSeparationWeight() const { return mSeparationWeight; };
-	inline float getWanderWeight() const { return mWanderWeight; };
+	inline int getAlignmentWeight() const { return mAlignmentWeight; };
+	inline int getCohesionWeight() const { return mCohesionWeight; };
+	inline int getSeparationWeight() const { return mSeparationWeight; };
+	inline int getWanderWeight() const { return mWanderWeight; };
 
-	inline void getAlignmentWeight(float newWeight) { mAlignmentWeight = newWeight; };
-	inline void getCohesionWeight(float newWeight)  {  mCohesionWeight = newWeight; };
-	inline void getSeparationWeight(float newWeight)  {  mSeparationWeight = newWeight; };
-	inline void getWanderWeight(float newWeight)  {  mWanderWeight = newWeight; };
+	inline std::string getDebugStats() const { return mDebugStats; };
+
+
+	inline void setAlignmentWeight(int newWeight) { mAlignmentWeight = newWeight; };
+	inline void setCohesionWeight(int newWeight)  {  mCohesionWeight = newWeight; };
+	inline void setSeparationWeight(int newWeight)  {  mSeparationWeight = newWeight; };
+	inline void setWanderWeight(int newWeight)  {  mWanderWeight = newWeight; };
 
 
 
@@ -83,7 +86,6 @@ private:
 
 
 	std::string mDebugStats;
-	std::ofstream mFout;
 	std::ifstream mFin;
 
 	//should be somewhere else

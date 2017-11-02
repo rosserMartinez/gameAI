@@ -138,5 +138,6 @@ void KinematicUnit::flock()
 {
 	//FLOCKA
 	Flocking* pFlock = new Flocking( this );
+	pFlock->updateWeights();
 	setSteering(pFlock);
 }

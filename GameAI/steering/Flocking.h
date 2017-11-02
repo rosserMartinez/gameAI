@@ -17,6 +17,7 @@ public:
 	//	void setTarget(KinematicUnit* pTarget) { mpTarget = pTarget; };
 
 	virtual Steering* getSteering();
+	void updateWeights();
 
 private:
 

@@ -80,7 +80,10 @@ void UnitManager::updateAndDrawAllUnits(float dt, GraphicsBuffer* targetBuffer)
 
 }
 
-void UnitManager::setReactionRadius(float newRadius)
+void UnitManager::updateFlockWeights()
 {
-	mCurrentReactionRadius = newRadius;
+	for (size_t i = 0; i < mpUnitList.size(); ++i)
+	{
+		mpUnitList.at(i)->flock();
+	}
 }
