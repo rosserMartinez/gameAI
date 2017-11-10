@@ -19,6 +19,8 @@
 #include "GridVisualizer.h"
 #include "DebugDisplay.h"
 #include "PathfindingDebugContent.h"
+#include "DijkstraPathfinder.h"
+#include "InputManager.h"
 
 #include <fstream>
 #include <vector>
@@ -33,6 +35,7 @@ GameApp::GameApp()
 ,mpGridGraph(NULL)
 ,mpPathfinder(NULL)
 ,mpDebugDisplay(NULL)
+,mpInputManager(NULL)
 {
 }
 
@@ -63,7 +66,11 @@ bool GameApp::init()
 	//init the nodes and connections
 	mpGridGraph->init();
 
-	mpPathfinder = new DepthFirstPathfinder(mpGridGraph);
+//	mpPathfinder = new DepthFirstPathfinder(mpGridGraph);
+
+	mpPathfinder = new DijkstraPathfinder(mpGridGraph);
+	mpIsDijkstra = true;
+//	mpAStar = new AStarPathfinder(mpGridGraph);
 
 	//load buffers
 	mpGraphicsBufferManager->loadBuffer( BACKGROUND_ID, "wallpaper.bmp");
@@ -78,6 +85,8 @@ bool GameApp::init()
 	//debug display
 	PathfindingDebugContent* pContent = new PathfindingDebugContent( mpPathfinder );
 	mpDebugDisplay = new DebugDisplay( Vector2D(0,12), pContent );
+
+	mpInputManager = new InputManager();
 
 	mpMasterTimer->start();
 	return true;
@@ -102,6 +111,9 @@ void GameApp::cleanup()
 
 	delete mpDebugDisplay;
 	mpDebugDisplay = NULL;
+
+	delete mpInputManager;
+	mpInputManager = NULL;
 }
 
 void GameApp::beginLoop()
@@ -125,20 +137,22 @@ void GameApp::processLoop()
 
 	mpMessageManager->processMessagesForThisframe();
 
-	ALLEGRO_MOUSE_STATE mouseState;
-	al_get_mouse_state( &mouseState );
+	//ALLEGRO_MOUSE_STATE mouseState;
+	//al_get_mouse_state( &mouseState );
 
-	if( al_mouse_button_down( &mouseState, 1 ) )//left mouse click
-	{
-		static Vector2D lastPos( 0.0f, 0.0f );
-		Vector2D pos( mouseState.x, mouseState.y );
-		if( lastPos.getX() != pos.getX() || lastPos.getY() != pos.getY() )
-		{
-			GameMessage* pMessage = new PathToMessage( lastPos, pos );
-			mpMessageManager->addMessage( pMessage, 0 );
-			lastPos = pos;
-		}
-	}
+	//if( al_mouse_button_down( &mouseState, 1 ) )//left mouse click
+	//{
+	//	static Vector2D lastPos( 0.0f, 0.0f );
+	//	Vector2D pos( mouseState.x, mouseState.y );
+	//	if( lastPos.getX() != pos.getX() || lastPos.getY() != pos.getY() )
+	//	{
+	//		GameMessage* pMessage = new PathToMessage( lastPos, pos );
+	//		mpMessageManager->addMessage( pMessage, 0 );
+	//		lastPos = pos;
+	//	}
+	//}
+
+	mpInputManager->checkInput();
 
 	//should be last thing in processLoop
 	Game::processLoop();

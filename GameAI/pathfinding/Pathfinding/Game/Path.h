@@ -16,9 +16,11 @@ public:
 	Node* getAndRemoveNextNode();
 	bool containsNode( Node* pNode ) const;
 	int getNumNodes() const { return mNodes.size(); };
+	float getDistFromInitial();
 
 	void addNode( Node* pNode );
 	void clear();//remove all nodes
+
 
 private:
 	std::vector<Node*> mNodes;

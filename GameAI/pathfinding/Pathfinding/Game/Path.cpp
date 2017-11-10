@@ -1,4 +1,5 @@
 #include "Path.h"
+#include "Node.h"
 
 Path::Path()
 {
@@ -64,6 +65,18 @@ bool Path::containsNode( Node* pNode ) const
 		}
 	}
 	return retVal;
+}
+
+float Path::getDistFromInitial()
+{
+	float tmpCount = 0.0f;
+
+	for (size_t i = 0; i < mNodes.size(); i++)
+	{
+		tmpCount += mNodes.at(i)->getCostSoFar();
+	}
+
+	return tmpCount;
 }
 
 void Path::clear()

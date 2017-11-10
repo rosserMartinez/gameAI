@@ -5,6 +5,7 @@
 #include "Path.h"
 #include "Game.h"
 #include "GraphicsBuffer.h"
+#include "GameApp.h"
 
 GridPathfinder::GridPathfinder( GridGraph* pGraph )
 :Pathfinder(pGraph)
@@ -34,9 +35,27 @@ void GridPathfinder::drawVisualization( Grid* pGrid, GraphicsBuffer* pDest )
 		mpVisualizer->clear();
 	}
 
-	static ALLEGRO_COLOR pathColor = al_map_rgb( 255, 64, 64 );
-	static ALLEGRO_COLOR startColor = al_map_rgb(1, 255, 128);
-	static ALLEGRO_COLOR stopColor = al_map_rgb(1, 128, 255);
+	//change color?
+	bool isDijkstra = dynamic_cast<GameApp*>(gpGame)->checkDijkstra();
+	
+
+	static ALLEGRO_COLOR pathColor;
+	static ALLEGRO_COLOR startColor;
+	static ALLEGRO_COLOR stopColor;
+
+	if (isDijkstra)
+	{
+		pathColor = al_map_rgb(255, 0, 0);
+		startColor = al_map_rgb(255, 40, 40);
+		stopColor = al_map_rgb(255, 119, 0);
+	}
+	else
+	{
+		 pathColor = al_map_rgb( 0, 0, 255 );
+		 startColor = al_map_rgb(64, 64, 255);
+		 stopColor = al_map_rgb(20, 255, 255);
+	}
+
 
 	unsigned int numNodes = mPath.getNumNodes();
 	ALLEGRO_COLOR currentPathColor = pathColor;
